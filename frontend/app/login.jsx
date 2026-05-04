@@ -10,15 +10,18 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await api.post("/auth/login", {
+      /*const res = await api.post("/api/auth/login", {
         email,
         password,
-      });
+      });*/
 
-      await SecureStore.setItemAsync("token", res.data.token);
+      const fakeToken = "dev-token";
+
+      await SecureStore.setItemAsync("token", fakeToken);
+      //await SecureStore.setItemAsync("token", res.data.token);
 
       Alert.alert("Success", "Logged in!");
-      router.push("/theatres");
+      router.replace("/homePage");
     } catch {
       Alert.alert("Error", "Invalid credentials");
     }
@@ -28,19 +31,24 @@ export default function Login() {
     <View style={{ padding: 20 }}>
       <TextInput
         placeholder="Email"
+        autoCapitalize="none"
         value={email}
-        onChangeText={setEmail}
+        onChangeText={(text) => setEmail(text.trim().toLowerCase())}
         style={{ borderWidth: 1, marginBottom: 10, padding: 10 }}
       />
       <TextInput
         placeholder="Password"
         secureTextEntry
         value={password}
-        onChangeText={setPassword}
+        onChangeText={(text) => setPassword(text.trim())}
         style={{ borderWidth: 1, marginBottom: 10, padding: 10 }}
       />
       <Button title="Login" onPress={handleLogin} />
+      <TextInput
+        textAlign="center"
+        placeholder="Register"
+        onPress={() => router.push("/register")}
+      />
     </View>
   );
 }
-

@@ -1,5 +1,7 @@
 import axios from "axios";
 
-export default axios.create({
-  baseURL: "http://YOUR_PC_IP:5000/api",
+const api = axios.create({
+  baseURL: "http://10.0.2.2:5000", // Android emulator
 });
+
+export default api;
