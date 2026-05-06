@@ -1,108 +1,98 @@
-# 🎭 Theatre Reservations App
+🎭 Theatre Reservations App
 
-A full-stack mobile theatre reservation system developed for theatre booking and reservation management.
+A full-stack mobile application for theatre booking and reservation management.
+Users can browse theatres, explore shows and showtimes, and book seats directly from a mobile interface.
 
-This project allows users to browse theatres, view available shows and showtimes, and make reservations directly from a mobile application.
+🚀 Tech Stack
+📱 Frontend
+React Native (Expo)
+Axios
+Expo Router
+Expo Secure Store
 
----
+🌐 Backend
+Node.js
+Express.js
+JWT Authentication
+RESTful API
+🗄 Database
+MariaDB / MySQL
+🔧 Tools
+Git & GitHub
+Postman (API testing)
 
-## 🚀 Tech Stack
+✨ Features
+👤 Authentication
+User registration & login
+Password hashing (secure storage)
+JWT-based authentication
+Protected API routes via middleware
 
-### Frontend
-- React Native
-- Expo
-- Axios
-- React Navigation
-- Expo Secure Store
+🎭 Theatres & Shows
+Browse theatres
+View show details
+Theatre location & description
+Show duration & pricing
 
-### Backend
-- Node.js
-- Express.js
-- JWT Authentication
-- REST API
+🕒 Showtimes
+View available showtimes
+Date & time selection
+Dynamic pricing per showtime
 
-### Database
-- MariaDB / MySQL
+💺 Seat Selection
+Interactive seat grid UI
+Real-time seat availability
+Prevent booking already reserved seats
 
-### Version Control
-- Git & GitHub
+🎟 Reservations
+Create reservation (multiple seats per booking)
+View user reservations
+Cancel only future reservations
+Reservation status tracking
 
----
+❤️ Favorites
+Add/remove favorite shows
+Local persistence (can be extended to DB)
 
-## 📱 Features
+📲 Mobile App
+Android emulator support
+Expo Go support
+Responsive UI
+API integration
 
-### 👤 User Authentication
-- User registration
-- User login
-- Password hashing
-- JWT token authentication
-- Protected routes with middleware
-
-### 🎭 Theatre Management
-- Get all theatres
-- Theatre descriptions
-- Theatre locations
-
-### 🎬 Shows
-- Get all shows
-- Show details
-- Theatre relation
-- Duration & age rating
-
-### 🕒 Showtimes
-- View available showtimes
-- Show date and time
-- Theatre hall information
-
-### 🎟 Reservations
-- Create reservation
-- View reservation history
-- Reservation status
-- Future reservation updates/cancel support
-
-### 📲 Mobile App
-- Android emulator support
-- Expo Go support
-- Fast refresh development
-- API integration with Axios
-
----
-
-## 📂 Project Structure
-
-```text
-theatre-reservations-app
+📂 Project Structure
+theatre-reservations-app/
 │
-├── backened
-│   ├── src
-│   │   ├── config
-│   │   ├── controllers
-│   │   ├── middleware
-│   │   ├── models
-│   │   └── routes
-│   ├── server.js
-│   └── package.json
+├── backend/
+│ ├── src/
+│ │ ├── config/
+│ │ ├── controllers/
+│ │ ├── middleware/
+│ │ ├── routes/
+│ │ └── models/
+│ ├── server.js
+│ └── package.json
 │
-├── frontend
-│   ├── app
-│   ├── components
-│   ├── services
-│   └── assets
-│
-├── database
+├── frontend/
+│ ├── app/
+│ ├── components/
+│ ├── context/
+│ ├── services/
+│ ├── assets/
+│ └── package.json
 │
 └── README.md
 
-## Backened Setup
- - cd backened
- - npm install
- - nodemon server.js
+⚙️ Setup Instructions
+1️⃣ Backend
+cd backend
+npm install
+npm run dev
 
- Backend runs on:
+Server runs on:
 
 http://localhost:5000
-
-Frontend Setup
+2️⃣ Frontend
 cd frontend
 npm install
 npx expo start
@@ -111,30 +101,16 @@ Run on:
 
 Android Emulator
 Expo Go
-Physical Android device
+Physical device
 
-🗄 Database Tables
-
-The database contains the following tables:
-
-users
-theatres
-shows
-showtimes
-reservations
-
-Authentication
-
-The system uses JWT authentication.
-
-Flow
+🔐 Authentication Flow
 User logs in
 Backend returns JWT token
-Frontend stores token securely
-Token is sent in protected requests
-Middleware verifies token access
+Token is stored securely (Expo Secure Store)
+Token is sent in API requests
+Middleware validates access
 
-API Endpoints
+📡 API Endpoints
 Auth
 POST /api/auth/register
 POST /api/auth/login
@@ -143,21 +119,41 @@ GET /api/theatres
 Shows
 GET /api/shows
 Showtimes
-GET /api/showtimes
+GET /api/showtimes/:show_id
 Reservations
 POST /api/reservations
-GET /api/reservations
+GET /api/reservations/user
+PUT /api/reservations/:id/cancel
+🗄 Database Schema
 
-🎯 Future Improvements
-Seat selection UI
-Payment integration
-Admin dashboard
-QR ticket generation
-OIDC / OAuth2 authentication
-Push notifications
+Main tables:
 
-Author
+users
+theatres
+shows
+showtimes
+reservations
+reservation_seats (many-to-many seats per reservation)
+
+🚧 Future Improvements
+💳 Payment integration (Stripe)
+🔔 Push notifications
+🎟 QR ticket generation
+👨‍💼 Admin dashboard
+🌍 Deployment (Docker + cloud)
+❤️ Store favorites in database
+📊 Analytics & logging
+👨‍💻 Author
 
 Miltiadis Papavramidis
 
-Developed as a full-stack distributed systems university project.
+Full-stack mobile application developed as part of a university project.
+
+⭐ Notes
+
+This project follows a production-oriented architecture with:
+
+Separation of frontend/backend
+Secure authentication
+Scalable database design
+Clean API structure
