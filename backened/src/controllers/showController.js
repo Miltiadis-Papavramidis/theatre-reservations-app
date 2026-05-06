@@ -25,6 +25,7 @@ exports.getShows = async (req, res) => {
     const showsMap = {};
 
     rows.forEach((row) => {
+      console.log("ROW:", row);
       if (!showsMap[row.show_id]) {
         showsMap[row.show_id] = {
           show_id: row.show_id,

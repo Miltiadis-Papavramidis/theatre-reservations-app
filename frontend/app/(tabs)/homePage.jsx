@@ -119,12 +119,15 @@ export default function HomePage() {
             {shows.map((shows) => (
               <ShowCard
                 key={shows.show_id}
+                showId={shows.show_id}
                 title={shows.title}
                 theatre={shows.theatre_name}
                 date={shows.showtimes?.[0]?.date}
                 time={shows.showtimes?.[0].time}
                 location={shows.location}
                 image={shows.image}
+                duration={shows.duration}
+                price={shows.showtimes?.[0]?.price}
               />
             ))}
           </ScrollView>
@@ -141,12 +144,15 @@ export default function HomePage() {
             {shows.map((shows) => (
               <ShowCard
                 key={shows.show_id}
+                showId={shows.show_id}
                 title={shows.title}
                 theatre={shows.theatre_name}
                 date={shows.showtimes?.[0]?.date}
                 time={shows.showtimes?.[0].time}
                 location={shows.location}
                 image={shows.image}
+                duration={shows.duration}
+                price={shows.showtimes?.[0]?.price}
               />
             ))}
           </ScrollView>

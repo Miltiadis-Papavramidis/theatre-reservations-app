@@ -1,46 +1,46 @@
 import { View, TextInput, ScrollView, ImageBackground } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
 import ShowCard from "../../components/ShowCard";
+import { useEffect, useState } from "react";
+import api from "../../services/api";
 
 export default function Shows() {
   const [search, setSearch] = useState("");
 
-  const shows = [
-    {
-      title: "Hamlet",
-      theatre: "National Theatre",
-      date: "15 May 2026",
-      time: "20:00",
-      image: "https://images.unsplash.com/photo-1503095396549-807759245b35",
-    },
+  const [shows, setShows] = useState([]);
 
-    {
-      title: "Macbeth",
-      theatre: "Royal Theatre",
-      date: "18 May 2026",
-      time: "21:00",
-      image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04",
-    },
+  console.log("FIRST SHOW:", shows[0]);
 
-    {
-      title: "Phantom",
-      theatre: "City Hall",
-      date: "20 May 2026",
-      time: "19:30",
-      image: "https://images.unsplash.com/photo-1507924538820-ede94a04019d",
-    },
-  ];
+  useEffect(() => {
+    const fetchShows = async () => {
+      try {
+        const res = await api.get("/api/shows");
+        console.log("RAW API RESPONSE:", JSON.stringify(res.data[0], null, 2));
+        setShows(res.data);
+      } catch (err) {
+        console.log("ERROR:", err);
+      }
+    };
+
+    fetchShows();
+  }, []);
+
+  console.log("SHOW:", shows);
 
   const filteredShows =
     search.trim() === ""
-      ? []
+      ? shows
       : shows.filter(
           (show) =>
-            show.title.toLowerCase().includes(search.toLowerCase()) ||
-            show.theatre.toLowerCase().includes(search.toLowerCase()),
+            (show.title?.toLowerCase() || "").includes(search.toLowerCase()) ||
+            (show.theatre_name?.toLowerCase() || "").includes(
+              search.toLowerCase(),
+            ),
         );
-
+  console.log("ΤΥΠΟΣ ShowCard:", typeof ShowCard);
+  console.log("ShowCard:", ShowCard);
+  console.log("🏷️ ShowCard component:", ShowCard);
+  console.log("🏷️ ShowCard name:", ShowCard.name);
   return (
     <ImageBackground
       source={require("../../assets/images/theatreback.jpg")}
@@ -83,16 +83,22 @@ export default function Shows() {
             />
           </View>
 
-          {filteredShows.map((show) => (
-            <ShowCard
-              key={show.title}
-              title={show.title}
-              theatre={show.theatre}
-              date={show.date}
-              time={show.time}
-              image={show.image}
-            />
-          ))}
+          {filteredShows.map((item) => {
+            console.log("PASSING ID:", item.show_id); // πρέπει να δείχνει 1,2
+
+            return (
+              <ShowCard
+                key={item.show_id}
+                show_id={item.show_id} // 🔥 ΑΥΤΟ ΕΙΝΑΙ ΤΟ ΚΡΙΣΙΜΟ
+                title={item.title}
+                theatre={item.theatre_name}
+                date={item.showtimes?.[0]?.date}
+                time={item.showtimes?.[0]?.time}
+                image={item.image}
+                location={item.location}
+              />
+            );
+          })}
         </ScrollView>
       </ImageBackground>
     </ImageBackground>

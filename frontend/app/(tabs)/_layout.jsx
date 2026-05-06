@@ -1,8 +1,11 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabsLayout() {
+  const insets = useSafeAreaInsets();
+
   return (
     <Tabs
       screenOptions={{
@@ -25,9 +28,9 @@ export default function TabsLayout() {
           position: "absolute",
           justifyContent: "center",
           alignItems: "center",
-          paddingBottom: 8,
+          paddingBottom: insets.bottom,
           paddingTop: 8,
-          height: 70,
+          height: 70 + insets.bottom,
           borderTopWidth: 0,
           backgroundColor: "#111827",
         },
@@ -50,6 +53,12 @@ export default function TabsLayout() {
         name="homePage"
         options={{
           title: "Home",
+          headerTitle: "InStage.com",
+          headerTitleAlign: "left",
+          headerTitleStyle: {
+            fontSize: 22,
+            fontWeight: "bold",
+          },
           tabBarIcon: ({ color }) => (
             <Ionicons name="home" size={24} color={color} />
           ),
@@ -90,6 +99,12 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: "Profile",
+          headerTitle: "InStage.com",
+          headerTitleAlign: "left",
+          headerTitleStyle: {
+            fontSize: 22,
+            fontWeight: "bold",
+          },
           tabBarIcon: ({ color }) => (
             <Ionicons name="person" size={24} color={color} />
           ),
