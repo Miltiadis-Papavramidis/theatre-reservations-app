@@ -162,7 +162,6 @@ theatre_reservation
 
 Then import the provided SQL schema file from /database
 
-
 ## Future Improvements
 
 ### Payment integration (Stripe)
@@ -193,4 +192,9 @@ Separation of frontend/backend
 Secure authentication
 Scalable database design
 Clean API structure
+
+## Link: https://github.com/Miltiadis-Papavramidis/theatre-reservations-app
+
+```
+
 ```
