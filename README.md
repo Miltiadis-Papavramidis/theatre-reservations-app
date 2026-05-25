@@ -162,18 +162,6 @@ theatre_reservation
 
 Then import the provided SQL schema file from /database
 
-## Environment Variables
-
-Create a `.env` file inside `/backend`:
-
-```env
-PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=yourpassword
-DB_NAME=theatre_app
-JWT_SECRET=your_jwt_secret
-```
 
 ## Future Improvements
 
