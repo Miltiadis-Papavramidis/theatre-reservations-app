@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "InStage.com",
-    "slug": "InStage.com",
+    "slug": "instage-com",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/instagecom-icon.png",
@@ -31,7 +31,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/instagecom-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
@@ -40,7 +40,8 @@
           }
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
